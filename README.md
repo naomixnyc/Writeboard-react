@@ -36,6 +36,30 @@ This is a full-stack web application for sharing articles on any topic. Users ca
 - `express`: server framework
 - `mongoose`: MongoDB object modeling
 
+#### 🧩 Middleware Feature (Article Model)
+This middleware runs automatically **before each `.save()`** operation on an article:
+
+
+```js
+// ==== MIDDLEWARE: Generate slug and sanitized HTML ===
+// runs *before* each .save() on the model
+
+articleSchema.pre('save', function (next) { 
+  if (this.isModified('title')) {
+    this.slug = slugify(this.title, { lower: true, strict: true });  
+  }
+
+  if (this.isModified('content')) {
+    const rawHtml = marked(this.content);   // convert markdown to raw HTML
+    this.sanitizedHtml = dompurify.sanitize(rawHtml);  // sanitize HTML output
+  }
+
+  next();
+});
+const Article = mongoose.model('Article', articleSchema);
+export default Article;
+```
+
 
 ## 📚 Resources and References
 
