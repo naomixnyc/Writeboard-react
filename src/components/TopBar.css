@@ -1,0 +1,137 @@
+
+.topbar {
+    position: fixed;
+    background-color: black;
+    color: white;
+    height: 0.5in;
+    width: 800px;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    padding: 0 1em;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+  
+  /* LEFT  */
+  .topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    z-index: 1;
+  }
+  
+  .burger .line {
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    margin: 3px 0;
+  }
+  
+  /* CENTER - ABSOLUTE & FIXED */
+  .topbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0px;
+  }
+  
+  .logo svg {
+    height: 15px;
+    width: 28px;
+  }
+  
+  /* RIGHT */
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    z-index: 1;
+  }
+  
+  /* SEARCH BUTTON */
+  .topbar-right .search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* AUTH BUTTONS */
+  .auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  
+  .auth-button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .auth-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* SEARCH DROPDOWN BAR */
+  .search-dropdown {
+    background-color: rgba(226, 224, 224, 0.4);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    top: calc(0.5in + 30px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+    height: 1in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    z-index: 999;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 75%;
+  }
+  
+  .search-input {
+    width: 75%;
+    padding: 0.5em;
+    font-size: 1em;
+  }
+
+  
+  .search-icon-button {
+    position: absolute;
+    right: 0.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+  }

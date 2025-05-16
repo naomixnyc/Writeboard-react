@@ -1,0 +1,32 @@
+.article-input {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.65rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    /* font-family: 'Source Serif Pro', Georgia, serif; */
+    font-family: sans-serif;
+    box-sizing: border-box;
+  }
+  
+  .title-input {
+    height: 3rem;
+  }
+  
+  .description-input {
+    height: 2.8rem;
+  }
+  
+  .content-input {
+    height: 250px;
+    resize: vertical;
+  }
+
+  .helper-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    margin-left: 0.4rem;
+  }
+  

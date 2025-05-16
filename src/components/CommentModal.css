@@ -1,0 +1,43 @@
+
+.comment-modal {
+    position: fixed;
+    top: 80px;
+    /* left: 10%;
+    right: 10%; */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+    font-family: inherit;
+    width: 760px; /* slightly narrower than 800px */
+    margin: 0 auto;
+  }
+  
+  .comment-title {
+    font-size: 1.6rem; 
+    margin-bottom: 1.2rem;
+  }
+  
+  .comment-field {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .comment-textarea {
+    width: 75%;
+    height: 150px;
+    padding: 10px;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  
+  .author-name {
+    font-weight: 500;
+  }
