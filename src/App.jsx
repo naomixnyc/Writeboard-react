@@ -2,7 +2,7 @@
 //(Added reading and decoding token from localStorage on mount)
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-// import jwtDecode from 'jwt-decode';  // <-- DO NOT EVER IMPPORT this way!!
+// import jwtDecode from 'jwt-decode';  // <-- DON'TS!!
 import { jwtDecode } from 'jwt-decode'; // for tokens // `npm install jwt-decode`
 import Articles from './components/Articles';
 import ArticlePage from './components/ArticlePage';
@@ -12,6 +12,7 @@ import TopBar from './components/TopBar';
 import AuthModal from './components/AuthModal';
 import './App.css';
 
+// returns a random header color 
 const getRandomColor = () => {
   const colors = ['#f87171', '#60a5fa', '#34d399', '#facc15', '#a78bfa'];
   return colors[Math.floor(Math.random() * colors.length)];
@@ -20,23 +21,27 @@ const getRandomColor = () => {
 function App() {
   const headerColor = getRandomColor();
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showLogin, setShowLogin] = useState(true);
-
+  // ====== State Definitions ======
+  const [searchTerm, setSearchTerm] = useState("");  // for filtering articles
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // tracks login status
+  const [showLogin, setShowLogin] = useState(true); // controls AuthModal visibility
+   
+  // handles changes to the article search input field
   const handleSearchChange = (e) => setSearchTerm(e.target.value);
 
-  // === check token on mount and decode it ===
+  // === Effect (run once) check token on mount and decode it ===
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
+        // decode the token to validate it and potentially extract user data
         const decoded = jwtDecode(token);
         console.log('Decoded token:', decoded);
         setIsAuthenticated(true);
         setShowLogin(false);
-        // You can optionally store decoded info to state here
+       // - decoded token data could be stored in state -
       } catch (err) {
+        // if decoding fails, assume the token is invalid or expired
         console.error('Invalid token:', err);
         setIsAuthenticated(false);
         setShowLogin(true);
@@ -44,13 +49,13 @@ function App() {
     }
   }, []);
 
-
+  // successful login (called from AuthModal)
   const handleLogin = (userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
     setIsAuthenticated(true);
     setShowLogin(false);
   };
-
+  // log out
   const handleLogout = () => {
     localStorage.removeItem('user');
     localStorage.removeItem('token');  // <-- REMOVE token on logout
