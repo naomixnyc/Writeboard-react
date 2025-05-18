@@ -45,7 +45,7 @@ function ArticlePage() {
 
   const handleDelete = async () => {
     try {
-      await fetch(`baseURL/articles/${id}`, {
+      await fetch(`${baseURL}/articles/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`, // correct Bearer Token header
