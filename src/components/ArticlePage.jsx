@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-// import { default as jwtDecode }
+// import { default as jwtDecode };
 // import jwtDecode from 'jwt-decode';
 import { jwtDecode } from 'jwt-decode'; // <------- THIS!!!
 import CommentModal from './CommentModal';
+import baseURL from '../api-config.js';
 
 import './Articles.css'; // Shared styles
 import './ArticlePage.css';
@@ -17,7 +18,7 @@ function ArticlePage() {
 
   const fetchArticle = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/articles/${id}`);
+      const res = await fetch(`${baseURL}/articles/${id}`);
       const data = await res.json();
       setArticle(data);
     } catch (err) {
@@ -44,10 +45,10 @@ function ArticlePage() {
 
   const handleDelete = async () => {
     try {
-      await fetch(`http://localhost:4000/articles/${id}`, {
+      await fetch(`baseURL/articles/${id}`, {
         method: 'DELETE',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`, // correct Bearer token header
+          Authorization: `Bearer ${localStorage.getItem('token')}`, // correct Bearer Token header
         },
       });
       navigate('/');
@@ -67,7 +68,6 @@ function ArticlePage() {
     <div>
       {article ? (
         <>
-        {/* ==== ALL ARTICLES link styled like READ - arrow on the left ==== */}
         <div className="read-link" onClick={() => navigate('/')}>
           <svg className="read-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="11" fill="none" stroke="#000" strokeWidth="1.5" />
@@ -84,16 +84,14 @@ function ArticlePage() {
           Published {new Date(article.createdAt).toLocaleDateString()}
         </p>
 
-        {/* ==== Article body styled with serif font in CSS ==== */}
         <div className="article-body" dangerouslySetInnerHTML={{ __html: article.sanitizedHtml }} />
 
         <div className="article-buttons">
-          {/* ==== Comment button styled like new-article-button (white) ==== */}
+
           <button className="new-article-button white" onClick={() => setShowModal(true)}>
             Comment
           </button>
 
-          {/* ==== Author-only buttons (Edit: grey, Delete: red) ==== */}
           {isAuthor && (
             <>
               <button className="new-article-button grey" onClick={() => navigate(`/articles/${article._id}/edit`)}>

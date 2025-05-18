@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './AuthModal.css'; 
+import './AuthModal.css';
+import baseURL from '../api-config.js';
 
 // for both login and signup 
 function AuthModal({ onLogin }) {
@@ -15,7 +16,8 @@ function AuthModal({ onLogin }) {
     console.log('Submitting form:', { isSignup, name, email, password });
   
      // determine API endpoint based on mode
-    const url = isSignup ? 'http://localhost:4000/users' : 'http://localhost:4000/users/login';
+    // const url = isSignup ? 'http://localhost:4000/users' : 'http://localhost:4000/users/login';
+    const url = isSignup ? `${baseURL}/users` : `${baseURL}/users/login`;
 
     // <--- POST is used when sending sensitive data (like email and password) in the body of the request.-->
     // prepare request payload

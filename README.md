@@ -104,6 +104,6 @@ export default Article;
 - Add reply feature to comments (nested comments)
 - Create and filter articles by categories
 - Implement session and role-based permission system:
-  - Only admins can delete users or any article
+  - Only admins can delete users (or any article)
   - Admin dashboard for managing content
 - Improve UI/UX for better navigation and usability

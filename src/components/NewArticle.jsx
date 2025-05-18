@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode' // for token data
 import './Articles.css';
 import './NewArticle.css'
+import baseURL from '../api-config.js';
 
 function NewArticle() {
   const [title, setTitle] = useState('');
@@ -26,7 +27,8 @@ function NewArticle() {
   }, []);
   
   useEffect(() => {
-    fetch('http://localhost:4000/articles/authors')
+    // fetch('http://localhost:4000/articles/authors')  
+    fetch(baseURL + '/articles/authors')  // or `${baseURL}/articles`
       .then(res => {
         if (!res.ok) { // check the response status
           throw new Error('Failed to fetch authors.');
@@ -41,7 +43,8 @@ function NewArticle() {
 
   const handleCreate = async () => {
     try {
-      await fetch('http://localhost:4000/articles', {
+      // await fetch('http://localhost:4000/articles', {
+      await fetch(baseURL + '/articles', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

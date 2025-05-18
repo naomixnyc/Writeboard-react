@@ -1,10 +1,9 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode'; // for token data
 import './AuthModal.css';
 import './Articles.css';  // buttons
-import './CommentModal.css'; 
+import './CommentModal.css';
+import baseURL from '../api-config.js';
 
 function CommentModal({ articleId, onClose, onCommentPosted }) { 
   const [authors, setAuthors] = useState([]);
@@ -13,7 +12,8 @@ function CommentModal({ articleId, onClose, onCommentPosted }) {
 
 
   useEffect(() => {
-    fetch('http://localhost:4000/articles/authors')
+    // fetch('http://localhost:4000/articles/authors')
+    fetch(baseURL + '/articles/authors')
       .then(res => res.json())
       .then(data => {
         setAuthors(data);
@@ -34,7 +34,8 @@ function CommentModal({ articleId, onClose, onCommentPosted }) {
 
   const handlePost = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/articles/${articleId}/comments`, {
+      // const res = await fetch(`http://localhost:4000/articles/${articleId}/comments`, {
+      const res = await fetch(`${baseURL}/articles/${articleId}/comments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

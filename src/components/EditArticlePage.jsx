@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './NewArticle.css';
 import './Articles.css';
+import baseURL from '../api-config.js';
 
 function ArticleEditPage() {
   const { id } = useParams();
@@ -17,12 +18,12 @@ function ArticleEditPage() {
   useEffect(() => {
     const fetchArticle = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/articles/${id}`);
+        // const res = await fetch(`http://localhost:4000/articles/${id}`);
+        const res = await fetch(`${baseURL}/articles/${id}`);
         if (!res.ok) throw new Error('Failed to fetch article'); 
 
         const data = await res.json();
 
-        //
         const authorId = typeof data.author === 'object' ? data.author._id : data.author;
         const authorDisplayName = typeof data.author === 'object' ? data.author.name : '';
 
@@ -51,16 +52,16 @@ function ArticleEditPage() {
     try {
 
 
-      const res = await fetch(`http://localhost:4000/articles/${id}`, {
+      // const res = await fetch(`http://localhost:4000/articles/${id}`, {
+      const res = await fetch(`${baseURL}/articles/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(articleData),
       });
 
       if (!res.ok) {
-        // throw new Error('Update failed');
-        const errText = await res.text(); // ✅ ADDED: detailed error output
-        throw new Error(errText || 'Update failed');
+        const errText = await res.text(); 
+        throw new Error(errText || 'Update failed'); //<----- 
 
       }
 
@@ -75,7 +76,8 @@ function ArticleEditPage() {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/articles/${id}`, {
+      // const res = await fetch(`http://localhost:4000/articles/${id}`, {
+      const res = await fetch(`${baseURL}/articles/${id}`, {
         method: 'DELETE',
       });
 

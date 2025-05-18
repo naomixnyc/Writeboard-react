@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './Articles.css'; 
+import './Articles.css';
+import baseURL from '../api-config.js';
 
 function Articles() {
   const location = useLocation();
@@ -11,7 +12,8 @@ function Articles() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/articles')
+    //fetch('http://localhost:4000/articles')
+    fetch(baseURL + '/articles')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch articles');
