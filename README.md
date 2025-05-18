@@ -5,7 +5,7 @@ A full-stack MERN (MongoDB, Express.js, React, Node.js) web application that all
 Users can register, log in, create, edit, and delete their own articles, as well as comment on any article. The application uses `bcrypt` to securely hash passwords and `jsonwebtoken` for secure user authentication via JSON Web Tokens (JWT).
 
 
-**Link to Backend:** [https://github.com/naomixnyc/WriteBoard-express](http://your-backend-url.com)
+**Link to Backend:** [https://github.com/naomixnyc/WriteBoard-express](https://github.com/naomixnyc/WriteBoard-express)
 
 
 
