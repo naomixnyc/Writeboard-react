@@ -7,6 +7,9 @@ Users can register, log in, create, edit, and delete their own articles, as well
 
 **Link to Backend:** [https://github.com/naomixnyc/WriteBoard-express](https://github.com/naomixnyc/WriteBoard-express)
 
+**Link to deployed Site:** [https://writeboard-react.onrender.com/](https://writeboard-react.onrender.com/)  
+Please feel free to create an account (by providing any name, email, and password) or use the test login (email: a@c.com, password: 123) to explore the app.
+
 
 
 ## 👤 Frontend Walkthrough
@@ -29,19 +32,19 @@ Users can register, log in, create, edit, and delete their own articles, as well
 - `jwt-decode` — Decodes JWTs in the browser to retrieve user info
 
 ### **Backend**
-- **Node.js** / **Express**
-- **MongoDB** — NoSQL database used to store users, posts, and comments
-- **mongoose** — ODM for MongoDB with schema-based modeling
+- `Node.js` / `Express`
+- `MongoDB`: NoSQL database used to store users, posts, and comments
+- `mongoose`: ODM for MongoDB with schema-based modeling
 - `bcrypt`: Hashes passwords securely before storing them
 - `jsonwebtoken`: Issues secure stateless tokens for authentication
 - `cors`: Enables cross-origin requests
 - `dotenv`: Manages environment variables
 
 ### Full Stack & Utilities
-- **marked** — Parses Markdown to HTML for article content
-- **dompurify** — Sanitizes HTML output from Markdown to prevent XSS
-- **jsdom** — Simulates a browser environment to support `dompurify`
-- **slugify** — Converts article titles into URL-safe strings for slugs (though not utilized in this version)
+- `marked`: Parses Markdown to HTML for article content
+- `dompurify`: Sanitizes HTML output from Markdown to prevent XSS
+- `jsdom`: Simulates a browser environment to support `dompurify`
+- `slugify`: Converts article titles into URL-safe strings for slugs (though not utilized in this version)
 
 
 #### 🧩 Middleware Feature (Article Model)
