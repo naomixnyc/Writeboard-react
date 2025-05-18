@@ -1,40 +1,48 @@
-# Article Sharing Platform
+# 📰 Article Sharing Platform
 
-This is a full-stack web application for sharing articles on any topic. Users can register, log in, post articles, edit or delete their own posts, and comment on any article. The app uses `bcrypt` to securely hash passwords before storing them. Upon login, the password is verified, and a JSON Web Token (JWT) is issued using the `jsonwebtoken` library. 
+A full-stack MERN (MongoDB, Express.js, React, Node.js) web application that allows users to share and explore articles on any topic.
 
-### Link to Backend 
+Users can register, log in, create, edit, and delete their own articles, as well as comment on any article. The application uses `bcrypt` to securely hash passwords and `jsonwebtoken` for secure user authentication via JSON Web Tokens (JWT).
+
+
 **Link to Backend:** [https://github.com/naomixnyc/WriteBoard-express](http://your-backend-url.com)
 
-## 👤 User Stories
-
-- As a user, I can **sign up** with an email and password.
-- As a user, I can **log in** to access the main page.
-- After login, I am redirected to the **main page** showing all articles listed by **latest date**, each showing:
-  - Title
-  - Description
-  - Author
-  - Published date
-- Clicking on an article shows the **full article** (title + body).
-- If I am the **author**, I can:
-  - Edit the article
-  - Delete the article
-  - Comment on the article
-- If I am **not the author**, I can still **comment** on the article.
-- I must be **logged in** to create, edit, delete, or comment.
 
 
-## Technologies Used
+## 👤 Frontend Walkthrough
+
+- Landing page displays all articles, sorted by timestamp (latest first)
+- Users must sign up (name, email, password) or log in (email, password)
+- Authenticated users can:
+  - Create, edit, and delete their own articles
+  - Comment on any article
+- Articles are written in Markdown and rendered as clean HTML
+- Login status persists even after a page reload
+- Users can search for an article by title
+
+
+
+## 🛠 Technologies Used
 
 ### **Frontend**
-- `jwt-decode`
+- **React**
+- `jwt-decode` — Decodes JWTs in the browser to retrieve user info
 
 ### **Backend**
-- `bcrypt`: for hashing user passwords
-- `jsonwebtoken`: for creating and verifying JWTs
-- `cors`: to handle cross-origin requests
-- `dotenv`: for environment variable management
-- `express`: server framework
-- `mongoose`: MongoDB object modeling
+- **Node.js** / **Express**
+- **MongoDB** — NoSQL database used to store users, posts, and comments
+- **mongoose** — ODM for MongoDB with schema-based modeling
+- `bcrypt`: Hashes passwords securely before storing them
+- `jsonwebtoken`: Issues secure stateless tokens for authentication
+- `cors`: Enables cross-origin requests
+- `dotenv`: Manages environment variables
+
+### Full Stack & Utilities
+- **marked** — Parses Markdown to HTML for article content
+- **dompurify** — Sanitizes HTML output from Markdown to prevent XSS
+- **jsdom** — Simulates a browser environment to support `dompurify`
+- **slugify** — Converts article titles into URL-safe strings for slugs (though not utilized in this version)
+
 
 #### 🧩 Middleware Feature (Article Model)
 This middleware runs automatically **before each `.save()`** operation on an article:
@@ -60,6 +68,24 @@ const Article = mongoose.model('Article', articleSchema);
 export default Article;
 ```
 
+## 🧠 Technical Decisions & Features
+
+- **Authentication & Security**
+  - Passwords are hashed using `bcrypt` to protect user credentials in the database.
+  - On successful login, the backend generates a JWT using `jsonwebtoken`, which is stored in `localStorage` on the client.
+  - The token allows users to remain logged in across page reloads (`jwt-decode` helps the frontend extract user info from the token).
+  - Conditional UI rendering:
+    - The user’s name is automatically filled in when posting articles or comments.
+    - Edit/Delete buttons appear only for the logged-in user’s own articles.
+
+- **Markdown Support**
+  - Articles use `marked` to parse Markdown into HTML.
+  - The HTML is sanitized using `dompurify` and `jsdom` to prevent XSS attacks before rendering.
+
+- **Database Modeling with Mongoose**
+  - Models and schemas are used to handle full CRUD operations for authers, articles, and comments.
+
+
 
 ## 📚 Resources and References
 
@@ -70,6 +96,7 @@ export default Article;
 - [Express.js documentation](https://expressjs.com/)
 - [Mongoose documentation](https://mongoosejs.com/)
 - [YouTube | Web Dev Simplified — JWT Authentication Tutorial - Node.js](https://www.youtube.com/watch?v=mbsmsi7l3r4)
+
 
 
 ## 🔮 Future Plans
